@@ -14,12 +14,6 @@ namespace Zialinski_task_NUnit.PageObjects
             _driver = driver;
         }
 
-       /*ublic GmailLoginPage GmailLogin => new GmailLoginPage(_driver);
-        public GmailPasswordPage GmailPassword => new GmailPasswordPage(_driver);
-        public GmailInboxPage GmailInbox => new GmailInboxPage(_driver);
-        public GmailDraftsPage GmailDrafts => new GmailDraftsPage(_driver);*/
-        
-
         private T GetPage<T>() where T : new()
         {
             var page = new T();

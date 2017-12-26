@@ -9,37 +9,29 @@ namespace Zialinski_task_NUnit.Tests.Base
 {
     public class BaseTest
     {
+        protected IWebDriver Driver { get; set; }
         protected DriverInitQuit DriverInitQuit { get; set; }
         protected DriverConfig DriverConfig { get; set; }
         protected PagesFactory Pages { get; set; }
-
-        public IWebDriver InitDriver(string browserName)
-        {
+        
+        public void InitDriver(string browserName){
             DriverConfig = new DriverConfig();
             DriverInitQuit = new DriverInitQuit();
-            return DriverInitQuit.InitDriver(browserName);
+            Driver = DriverInitQuit.InitDriver(browserName);
+            DriverConfig.LoadApp(Driver, ConfigurationManager.AppSettings["GmailURL"]);
+            Pages = new PagesFactory(Driver);
         }
-
-        public void SetUp(IWebDriver driver)
+    
+        [TearDown]
+        public void EndTest()
         {
-            DriverConfig.LoadApp(driver, ConfigurationManager.AppSettings["GmailURL"]);
-            InitPages(driver);
-        }
-
-        public void InitPages(IWebDriver driver)
-        {
-            Pages = new PagesFactory(driver);
-        }
-        
-        public void QuitDriver(IWebDriver driver)
-        {
-            driver.Quit();
+            DriverInitQuit.QuitDriver(Driver);
         }
 
         public static IEnumerable<string> BrowsersToRunWith()
         {
             string[] browsers = AutomationSettings.browsersToRunWith.Split(',');
-
+            
             foreach (var browser in browsers)
             {
                 yield return browser;

@@ -6,7 +6,7 @@ using Zialinski_task_NUnit.PageObjects.Base;
 
 namespace Zialinski_task_NUnit.PageObjects.GmailMail
 {
-    public class GmailInboxPage : BasePage
+    public class GmailInboxPage 
     {
         private WebDriverWait _wait;
         private const string SavedLableXPath = "//td[contains(@class, 'HE')]//span[contains(text(), 'Saved')]";
@@ -19,10 +19,6 @@ namespace Zialinski_task_NUnit.PageObjects.GmailMail
 
         [FindsBy(How = How.XPath, Using = "//div[@role='navigation']//a[@href='https://mail.google.com/mail/#drafts']")]
         private IWebElement DraftsLink { get; set; }
-
-        public GmailInboxPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public void ClickComposeButton()
         {

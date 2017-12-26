@@ -6,7 +6,7 @@ using Zialinski_task_NUnit.PageObjects.Base;
 
 namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
 {
-    public class GmailPasswordPage : BasePage
+    public class GmailPasswordPage 
     {
         private WebDriverWait _wait;
 
@@ -21,10 +21,7 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
 
         [FindsBy(How = How.Id, Using = "passwordNext")]
         private IWebElement SubmitPasswordButton { get; set; }
-
-        public GmailPasswordPage(IWebDriver driver) : base(driver)
-        {
-        }
+        
 
         public void InputPassword(string password, IWebDriver driver)
         {

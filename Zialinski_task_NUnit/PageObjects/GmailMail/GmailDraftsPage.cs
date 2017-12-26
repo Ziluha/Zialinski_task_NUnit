@@ -8,7 +8,7 @@ using Zialinski_task_NUnit.PageObjects.Base;
 
 namespace Zialinski_task_NUnit.PageObjects.GmailMail
 {
-    public class GmailDraftsPage : BasePage
+    public class GmailDraftsPage
     {
         private WebDriverWait _wait;
         private const string InDraftCheck = "Drafts";
@@ -24,10 +24,6 @@ namespace Zialinski_task_NUnit.PageObjects.GmailMail
 
         [FindsBy(How = How.XPath, Using = "//div[@role='button' and @act='16']/div")]
         private IWebElement DiscardDraftsButton { get; set; }
-
-        public GmailDraftsPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public bool IsDraftAdded(string messageSubject)
         {

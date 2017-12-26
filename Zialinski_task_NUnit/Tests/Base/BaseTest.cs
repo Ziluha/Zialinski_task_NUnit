@@ -6,13 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using Zialinski_task_NUnit.Driver;
 using Zialinski_task_NUnit.PageObjects;
 
 namespace Zialinski_task_NUnit.Tests.Base
 {
-    [TestFixture]
-    [Parallelizable]
+   // [TestFixture]
+  //  [Parallelizable]
     public class BaseTest
     {
         protected IWebDriver Driver { get; set; }
@@ -20,19 +22,26 @@ namespace Zialinski_task_NUnit.Tests.Base
         protected DriverConfig DriverConfig { get; set; }
         protected PagesFactory Pages { get; set; }
 
-        public void InitDriver(string browserName)
+        public IWebDriver InitDriver(string browserName)
         {
             DriverConfig = new DriverConfig();
             DriverInitQuit = new DriverInitQuit();
             Driver = DriverInitQuit.InitDriver(browserName);
-            DriverConfig.LoadApp(Driver, ConfigurationManager.AppSettings["GmailURL"]);
-            Pages = new PagesFactory(Driver);
+            //DriverConfig.LoadApp(Driver, ConfigurationManager.AppSettings["GmailURL"]);
+            return Driver;
         }
 
-        [TearDown]
-        public void EndTest()
+        public void InitPages(IWebDriver driver)
         {
-            DriverInitQuit.QuitDriver(Driver);
+            Pages = new PagesFactory(driver);
+        }
+
+        //[TearDown]
+        public void QuitDriver(IWebDriver driver)
+        {
+            driver.Quit();
+            //DriverInitQuit.QuitDriver(Driver);
+            //Driver.Quit();
         }
 
         public static IEnumerable<string> BrowsersToRunWith()

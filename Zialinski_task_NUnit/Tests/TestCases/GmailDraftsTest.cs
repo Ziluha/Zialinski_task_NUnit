@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework.Internal;
+﻿using System.Configuration;
 using Zialinski_task_NUnit.Tests.Base;
 using NUnit.Framework;
 
@@ -37,7 +31,7 @@ namespace Zialinski_task_NUnit.Tests.TestCases
                 "No message with this subject in drafts");
         }
 
-        /*[Test]
+        [Test]
         [TestCaseSource(typeof(BaseTest), "BrowsersToRunWith")]
         public void DeleteMessageFromDrafts(string browserName)
         {
@@ -51,6 +45,6 @@ namespace Zialinski_task_NUnit.Tests.TestCases
             Pages.GmailDrafts.ClickDiscardDraftsButton();
             Assert.AreEqual(countOfDraftsAtStart - 1, Pages.GmailDrafts.GetCountOfDrafts(),
                 "Count of drafts at start and afted discarding doesn't match");
-        }*/
+        }
     }
 }

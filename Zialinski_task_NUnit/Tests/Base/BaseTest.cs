@@ -12,6 +12,7 @@ using Zialinski_task_NUnit.PageObjects;
 namespace Zialinski_task_NUnit.Tests.Base
 {
     [TestFixture]
+    [Parallelizable]
     public class BaseTest
     {
         protected IWebDriver Driver { get; set; }
@@ -32,6 +33,16 @@ namespace Zialinski_task_NUnit.Tests.Base
         public void EndTest()
         {
             DriverInitQuit.QuitDriver(Driver);
+        }
+
+        public static IEnumerable<string> BrowsersToRunWith()
+        {
+            string[] browsers = AutomationSettings.browsersToRunWith.Split(',');
+
+            foreach (var browser in browsers)
+            {
+                yield return browser;
+            }
         }
     }
 }

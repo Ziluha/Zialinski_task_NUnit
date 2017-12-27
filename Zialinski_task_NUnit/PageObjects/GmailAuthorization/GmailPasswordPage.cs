@@ -8,7 +8,7 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
 {
     public class GmailPasswordPage 
     {
-        private WebDriverWait _wait;
+        private readonly WebDriverWait _wait;
 
         [FindsBy(How = How.CssSelector, Using = "div[jsname=B34EJ]")]
         private IWebElement PasswordErrorLabel { get; set; }
@@ -21,11 +21,15 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
 
         [FindsBy(How = How.Id, Using = "passwordNext")]
         private IWebElement SubmitPasswordButton { get; set; }
-        
 
-        public void InputPassword(string password, IWebDriver driver)
+        public GmailPasswordPage(IWebDriver driver)
         {
+            PageFactory.InitElements(driver, this);
             _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+        }
+
+        public void InputPassword(string password)
+        {
             _wait.Until(ExpectedConditions.ElementToBeClickable(PasswordField))
                 .Click();
             PasswordField.SendKeys(password);
@@ -36,11 +40,10 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
             SubmitPasswordButton.Click();
         }
 
-        public bool IsPasswordErrorLabelPresented(IWebDriver driver)
+        public bool IsPasswordErrorLabelPresented()
         {
             try
             {
-                _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 return _wait.Until(elemDisplayed => PasswordErrorLabel.Displayed);
             }
             catch (NoSuchElementException)
@@ -49,11 +52,10 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
             }
         }
 
-        public bool IsLoginApplied(IWebDriver driver)
+        public bool IsLoginApplied()
         {
             try
             {
-                _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 return _wait.Until(elemDisplayed => InputPasswordLabel.Displayed);
             }
             catch (Exception)

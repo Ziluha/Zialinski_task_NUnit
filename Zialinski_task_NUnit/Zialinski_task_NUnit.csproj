@@ -60,13 +60,12 @@
       <DependentUpon>AutomationSettings.resx</DependentUpon>
     </Compile>
     <Compile Include="Driver\DriverConfig.cs" />
-    <Compile Include="Driver\DriverInitQuit.cs" />
+    <Compile Include="Driver\DriverInit.cs" />
     <Compile Include="PageObjects\Base\BasePage.cs" />
     <Compile Include="PageObjects\GmailAuthorization\GmailLoginPage.cs" />
     <Compile Include="PageObjects\GmailAuthorization\GmailPasswordPage.cs" />
     <Compile Include="PageObjects\GmailMail\GmailDraftsPage.cs" />
     <Compile Include="PageObjects\GmailMail\GmailInboxPage.cs" />
-    <Compile Include="PageObjects\PagesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Base\BaseTest.cs" />
     <Compile Include="Tests\TestCases\GmailAuthorizationTest.cs" />

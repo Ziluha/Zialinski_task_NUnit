@@ -4,7 +4,7 @@ using OpenQA.Selenium.Firefox;
 
 namespace Zialinski_task_NUnit.Driver
 {
-    public class DriverInitQuit
+    public class DriverInit
     {
         private IWebDriver Driver { get; set; }
 
@@ -20,11 +20,6 @@ namespace Zialinski_task_NUnit.Driver
                     break;
             }
             return Driver;
-        }
-
-        public void QuitDriver(IWebDriver driver)
-        {
-            driver.Quit();
         }
     }
 }

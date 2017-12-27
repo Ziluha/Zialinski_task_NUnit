@@ -25,6 +25,11 @@ namespace Zialinski_task_NUnit.PageObjects.GmailMail
         [FindsBy(How = How.XPath, Using = "//div[@role='button' and @act='16']/div")]
         private IWebElement DiscardDraftsButton { get; set; }
 
+        public GmailDraftsPage(IWebDriver driver)
+        {
+            PageFactory.InitElements(driver, this);
+        }
+
         public bool IsDraftAdded(string messageSubject)
         {
             return DraftSubjectsList != null && DraftSubjectsList.First().Text == messageSubject;

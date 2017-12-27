@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using Zialinski_task_NUnit.PageObjects;
+using Zialinski_task_NUnit.PageObjects.GmailAuthorization;
 using Zialinski_task_NUnit.Tests.Base;
 
 namespace Zialinski_task_NUnit.Tests.TestCases
 {
     [TestFixture]
-    [Parallelizable]
+    [Parallelizable(ParallelScope.All)]
     public class GmailFailTest : BaseTest
     {
         [Test]
         [TestCaseSource(typeof(BaseTest), "BrowsersToRunWith")]
         public void FailCheck(string browserName)
         {
-            InitDriver(browserName);
+            IWebDriver driver = InitDriver(browserName);
 
-            Pages.GmailLogin.InputLogin(ConfigurationManager.AppSettings["InvalidLogin"]);
-            Pages.GmailLogin.SubmitLogin();
-            Assert.True(Pages.GmailPassword.IsLoginApplied(Driver), "Password page is not opened");
+            GmailLoginPage gmailLogin = new GmailLoginPage(driver);
+            gmailLogin.InputLogin(ConfigurationManager.AppSettings["InvalidLogin"]);
+            gmailLogin.SubmitLogin();
+
+            GmailPasswordPage gmailPassword = new GmailPasswordPage(driver);
+            Assert.True(gmailPassword.IsLoginApplied(), "Password page is not opened");
+
+            QuitDriver(driver);
         }
     }
 }

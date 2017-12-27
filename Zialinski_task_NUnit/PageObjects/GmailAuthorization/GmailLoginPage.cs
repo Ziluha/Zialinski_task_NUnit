@@ -18,7 +18,11 @@ namespace Zialinski_task_NUnit.PageObjects.GmailAuthorization
 
         [FindsBy(How = How.Id, Using = "identifierNext")]
         private IWebElement SubmitLoginButton { get; set; }
-        
+
+        public GmailLoginPage(IWebDriver driver)
+        {
+            PageFactory.InitElements(driver, this);
+        }
 
         public void InputLogin(string login)
         {

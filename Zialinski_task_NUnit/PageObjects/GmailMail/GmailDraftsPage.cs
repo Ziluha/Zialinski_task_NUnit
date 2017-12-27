@@ -4,7 +4,6 @@ using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using Zialinski_task_NUnit.PageObjects.Base;
 
 namespace Zialinski_task_NUnit.PageObjects.GmailMail
 {
